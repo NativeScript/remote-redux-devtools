@@ -1,41 +1,37 @@
 import { EventData } from 'data/observable';
 import { Page } from 'ui/page';
+import { Label } from "ui/label";
 import { isAndroid } from "platform";
 import { createStore } from 'redux';
+import { counter } from "./counter.reducer"
 var devTools = require('remote-redux-devtools').default;
 
-// Event handler for Page "navigatingTo" event attached in main-page.xml
+let counterLbl: Label;
 export function navigatingTo(args: EventData) {
-  // Get the event sender
   let page = <Page>args.object;
+  counterLbl = <Label>page.getViewById("counter");
 }
 
-// console.log("devTools: " + devTools);
-function counter(state, action) {
-  if (state === undefined) state = 0
-  switch (action.type) {
-  case 'INCREMENT':
-    return state + 1
-  case 'DECREMENT':
-    return state - 1
-  default:
-    return state
-  }
+export function increment() {
+  store.dispatch({ type: 'INCREMENT' })
 }
+
+export function decrement() {
+  store.dispatch({ type: 'DECREMENT' })
+}
+
 
 var hostname = isAndroid ? "10.0.3.2" : "localhost";
 
 var store = createStore(counter, devTools({
   hostname,
   port: 8000,
-  realtime: true}))
-store.subscribe(function() { console.log(store.getState()) })
+  realtime: true
+}))
 
-function incrementer() {
-  setTimeout(function() {
-    store.dispatch({ type: 'INCREMENT' })
-    incrementer()
-  }, 1000)
-}
+store.subscribe(() => {
+  let state = store.getState();
 
-incrementer();
+  console.log(state);
+  counterLbl.text = state;
+})
