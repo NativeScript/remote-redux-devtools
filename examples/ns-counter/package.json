@@ -1,0 +1,21 @@
+{
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "readme": "NativeScript Application",
+  "repository": "<fill-your-repository-here>",
+  "nativescript": {
+    "id": "org.nativescript.nscounter",
+    "tns-ios": {
+      "version": "2.3.0"
+    }
+  },
+  "dependencies": {
+    "redux": "^3.6.0",
+    "remote-redux-devtools": "^0.5.1",
+    "tns-core-modules": "2.3.0"
+  },
+  "devDependencies": {
+    "nativescript-dev-typescript": "^0.3.2",
+    "typescript": "^2.0.6"
+  }
+}
