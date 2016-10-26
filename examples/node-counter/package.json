@@ -4,13 +4,15 @@
   "description": "Very simple counter for redux remote devtools in node",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "remotedev": "remotedev --hostname=localhost --port=8000"
   },
   "license": "MIT",
   "dependencies": {
     "redux": "^3.5.2"
   },
   "devDependencies": {
-    "remote-redux-devtools": "^0.4.2"
+    "remote-redux-devtools": "^0.4.2",
+    "remotedev-server": "^0.2.0"
   }
 }

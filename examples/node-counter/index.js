@@ -13,7 +13,10 @@ function counter(state, action) {
   }
 }
 
-var store = createStore(counter, devTools({realtime: true}))
+var store = createStore(counter, devTools({
+  hostname: "localhost",
+  port: 8000,
+  realtime: true}))
 store.subscribe(function() { console.log(store.getState()) })
 
 function incrementer() {
